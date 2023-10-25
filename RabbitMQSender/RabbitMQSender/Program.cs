@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using RabbitMQSender;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -39,18 +40,4 @@ using System.Text.Json.Serialization;
 var factory = new ConnectionFactory { Uri = new Uri("amqp://guest:guest@localhost:5672") };
 var connection = factory.CreateConnection();
 var channel = connection.CreateModel();
-channel.QueueDeclare("demo-queue",
-    durable: true,
-    exclusive: false,
-    autoDelete: false,
-    arguments: null);
-
-for (int i = 0; i < 100; i++)
-{
-    var message = new { Name = "Producer", Message = $"Hello - {i}" };
-
-    var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
-    channel.BasicPublish("", "demo-queue", null, body);
-
-    Task.Delay(1000).Wait();
-}
+QueueProducer.Publish(channel);

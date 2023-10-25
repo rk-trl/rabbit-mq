@@ -45,7 +45,12 @@ channel.QueueDeclare("demo-queue",
     autoDelete: false,
     arguments: null);
 
-var message = new { Name = "Producer", Message = "Hello" };
+for (int i = 0; i < 100; i++)
+{
+    var message = new { Name = "Producer", Message = $"Hello - {i}" };
 
-var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
-channel.BasicPublish("","demo-queue",null,body);
+    var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
+    channel.BasicPublish("", "demo-queue", null, body);
+
+    Task.Delay(1000).Wait();
+}

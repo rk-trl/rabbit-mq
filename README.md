@@ -1,2 +1,2 @@
-# rabbit-mq
+# rabbit-mq - Direct Exchange
 

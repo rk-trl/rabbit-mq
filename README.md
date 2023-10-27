@@ -1,2 +1,6 @@
-# rabbit-mq - Direct Exchange
+# rabbit-mq
+Direct Exchange
+Topic
+Header
+Fanout
 

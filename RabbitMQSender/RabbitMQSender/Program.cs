@@ -40,4 +40,6 @@ using System.Text.Json.Serialization;
 var factory = new ConnectionFactory { Uri = new Uri("amqp://guest:guest@localhost:5672") };
 var connection = factory.CreateConnection();
 var channel = connection.CreateModel();
-DirectExchangePublisher.Publish(channel);
+//DirectExchangePublisher.Publish(channel);
+//TopicExchangePublisher.Publish(channel);
+FanoutExchangePublisher.Publish(channel);

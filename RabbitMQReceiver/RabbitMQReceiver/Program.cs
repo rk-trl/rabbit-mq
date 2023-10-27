@@ -46,4 +46,7 @@ using System.Text;
 var factory = new ConnectionFactory { Uri = new Uri("amqp://guest:guest@localhost:5672") };
 var connection = factory.CreateConnection();
 var channel = connection.CreateModel();
-DirectExchangeConsumer.Consume(channel);
+//DirectExchangeConsumer.Consume(channel);
+//TopicExchangeConsumer.Consume(channel);
+//HeaderExchangeConsumer.Consume(channel);
+FanoutExchangeConsumer.Consume(channel);
